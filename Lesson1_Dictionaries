@@ -1,0 +1,30 @@
+#Task 1: Restaurant Menu Update
+#Add a new category called "Beverages" with at least two items.
+#Update the price of "Steak" to 17.99.
+#Remove "Bruschetta" from "Starters".
+
+restaurant_menu = {
+    "Starters": {"Soup": 5.99, "Bruschetta": 6.50},
+    "Main Course": {"Steak": 15.99, "Salmon": 13.99},
+    "Desserts": {"Cake": 4.99, "Ice Cream": 3.99}
+}
+
+def add_item(menu):
+    category = input("Enter the category: ")
+    item_name = input("Enter the item name: ")
+    item_price = float(input("Enter the item price: "))
+    
+    if category in menu:
+        menu[category][item_name] = item_price
+        print(f"Item '{item_name}' added to category '{category}'.")
+    else:
+        menu[category] = {item_name: item_price}
+        print(f"Category '{category}' created with item '{item_name}'.")
+
+def main(menu):
+    add_item(menu)
+    print("Updated menu:")
+    print(menu)
+
+if __name__ == "__main__":
+    main(restaurant_menu)

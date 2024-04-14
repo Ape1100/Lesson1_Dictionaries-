@@ -1,0 +1,65 @@
+#2 Advanced Data Handling w/ python
+#Implement functions to:
+#Book a room (mark as booked and assign to a customer).
+#Check-out a customer (mark room as available and remove customer name).
+#Display the status of all rooms.
+
+
+#hotel_rooms = {
+#   <span class="hljs-string">"101"</span>: {<span class="hljs-string">"status"</span>: <span class="hljs-string">"available"</span>, <span class="hljs-string">"customer"</span>: <span class="hljs-string">""</span>},
+#    <span class="hljs-string">"102"</span>: {<span class="hljs-string">"status"</span>: <span class="hljs-string">"booked"</span>, <span class="hljs-string">"customer"</span>: <span class="hljs-string">"John Doe"</span>}
+#}
+
+hotel_rooms = {
+    "101": {"status": "available", "customer": ""},
+    "102": {"status": "booked", "customer": "John Doe"}
+}
+
+def book_room(room_number, customer_name):
+    if hotel_rooms[room_number]["status"] == "available":
+        hotel_rooms[room_number]["status"] = "booked"
+        hotel_rooms[room_number]["customer"] = customer_name
+        print(f"Room {room_number} booked successfully for {customer_name}.")
+    else:
+        print(f"Room {room_number} is already booked.")
+
+def check_out(room_number):
+    if hotel_rooms[room_number]["status"] == "booked":
+        hotel_rooms[room_number]["status"] = "available"
+        hotel_rooms[room_number]["customer"] = ""
+        print(f"Check-out successful for room {room_number}.")
+    else:
+        print(f"Room {room_number} is already available.")
+
+def display_rooms():
+    print("Room Status:")
+    for room_number, details in hotel_rooms.items():
+        print(f"Room {room_number}: Status - {details['status']}, Customer - {details['customer']}")
+
+def main():
+    while True:
+        print("\nMenu:")
+        print("1. Book a room")
+        print("2. Check-out a customer")
+        print("3. Display room status")
+        print("4. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            room_num = input("Enter room number to book: ")
+            customer = input("Enter customer name: ")
+            book_room(room_num, customer)
+        elif choice == "2":
+            room_num = input("Enter room number to check-out: ")
+            check_out(room_num)
+        elif choice == "3":
+            display_rooms()
+        elif choice == "4":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()

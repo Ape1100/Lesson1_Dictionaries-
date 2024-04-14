@@ -1,0 +1,67 @@
+#Task 1: Customer Service Ticket Tracker
+#Demonstrate your ability to use nested collections and loops by creating a system to track customer service tickets.
+
+#itcket structure
+
+service_tickets = {
+    "Ticket001": {"Customer": "Alice", "Issue": "Login problem", "Status": "open"},
+    "Ticket002": {"Customer": "Bob", "Issue": "Payment issue", "Status": "closed"}
+}
+
+#Customer Service Ticket Tracker
+
+def open_ticket(customer, issue):
+    ticket_id = f"Ticket{len(service_tickets) + 1:03d}"
+    service_tickets[ticket_id] = {"Customer": customer, "Issue": issue, "Status": "open"}
+    print(f"New ticket opened with ID: {ticket_id}")
+
+def update_ticket_status(ticket_id, status):
+    if ticket_id in service_tickets:
+        service_tickets[ticket_id]["Status"] = status
+        print(f"Ticket {ticket_id} status updated to: {status}")
+    else:
+        print(f"Ticket with ID {ticket_id} not found.")
+
+def display_tickets(status=None):
+    if status:
+        print(f"Tickets with status '{status}':")
+        for ticket_id, ticket_details in service_tickets.items():
+            if ticket_details["Status"] == status:
+                print(f"ID: {ticket_id}, Customer: {ticket_details['Customer']}, Issue: {ticket_details['Issue']}, Status: {ticket_details['Status']}")
+    else:
+        print("All tickets:")
+        for ticket_id, ticket_details in service_tickets.items():
+            print(f"ID: {ticket_id}, Customer: {ticket_details['Customer']}, Issue: {ticket_details['Issue']}, Status: {ticket_details['Status']}")
+
+def main():
+    while True:
+        print("\nMenu:")
+        print("1. New ticket")
+        print("2. Update ticket")
+        print("3. Display all tickets")
+        print("4. Display tickets status")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            customer = input("Enter customer name: ")
+            issue = input("Enter issue description: ")
+            open_ticket(customer, issue)
+        elif choice == "2":
+            ticket_id = input("Enter ticket ID: ")
+            status = input("Enter new status (open/closed): ")
+            update_ticket_status(ticket_id, status)
+        elif choice == "3":
+            display_tickets()
+        elif choice == "4":
+            status = input("Enter ticket status to filter (open/closed): ")
+            display_tickets(status)
+        elif choice == "5":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()

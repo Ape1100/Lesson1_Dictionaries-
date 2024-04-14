@@ -1,0 +1,46 @@
+#Task 2: E-commerce Product Search Feature 
+#Problem Statement: Create a system that:
+#Holds a dictionary of products where each product has attributes like name, category, and price.
+#Implement a search function that allows searching for products by name, returning a list of matching products (case-insensitive search).
+#Handle cases where no matches are found.
+
+
+products = {
+    <span class="hljs-string">"1"</span>: {<span class="hljs-string">"name"</span>: <span class="hljs-string">"Laptop"</span>, <span class="hljs-string">"category"</span>: <span class="hljs-string">"Electronics"</span>, <span class="hljs-string">"price"</span>: <span class="hljs-number">800</span>},
+    <span class="hljs-string">"2"</span>: {<span class="hljs-string">"name"</span>: <span class="hljs-string">"Shirt"</span>, <span class="hljs-string">"category"</span>: <span class="hljs-string">"Clothing"</span>, <span class="hljs-string">"price"</span>: <span class="hljs-number">20</span>}
+]
+
+def search_product(product_name):
+    matching_products = []
+    for product_id, product_details in products.items():
+        if product_details["name"].lower() == product_name.lower():
+            matching_products.append((product_id, product_details))
+    return matching_products
+
+def main():
+    while True:
+        print("\nMenu:")
+        print("1. Search for a product by name")
+        print("2. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            search_name = input("Enter the name of the product: ")
+            matching_products = search_product(search_name)
+            if matching_products:
+                print("Matching products:")
+                for product_id, product_details in matching_products:
+                    print(f"Product ID: {product_id}, Name: {product_details['name']}, Category: {product_details['category']}, Price: {product_details['price']}")
+            else:
+                print("No matching products found.")
+        elif choice == "2":
+            print("Exiting")
+            break
+        else:
+            print("Invalid Selection. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
+
